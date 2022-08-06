@@ -23,36 +23,31 @@ const createAndSavePerson = (done) => {
   });
 
   personOne.save((err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
+    return err ? console.log(err) : done(null, data);
   });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
   Person.create(arrayOfPeople, (err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
+    return err ? console.log(err) : done(null, data);
   });
 };
 
 const findPeopleByName = (personName, done) => {
   Person.find({name: personName}, (err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
+    return err ? console.log(err) : done(null, data);
   });
 };
 
 const findOneByFood = (food, done) => {
   Person.findOne({favoriteFoods: food}, (err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
+    return err ? console.log(err) : done(null, data);
   });
 };
 
 const findPersonById = (personId, done) => {
   Person.findById(personId, (err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
+    return err ? console.log(err) : done(null, data);
   });
 };
 
@@ -65,8 +60,7 @@ const findEditThenSave = (personId, done) => {
     person.favoriteFoods.push(foodToAdd);
 
     person.save((err, updatedData) => {
-      if (err) return console.log(err);
-      done(null, updatedData);
+      return err ? console.log(err) : done(null, updatedData);
     });
   });
 };
@@ -75,16 +69,14 @@ const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
   Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true},
     (err, updatedData) => {
-      if (err) return console.log(err);
-      done(null, updatedData);
+      return err ? console.log(err) : done(null, updatedData);
     }
   )
 };
 
 const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId, (err, data) => {
-      if (err) return console.log(err);
-      done(null, data);
+    return err ? console.log(err) : done(null, data);
     }
   );
 };
@@ -93,8 +85,7 @@ const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
 
   Person.remove({name: nameToRemove}, (err, response) => {
-    if (err) return done(err);
-    done(null, JSON.stringify(response));
+    return err ? done(err) : done(null, response);
   });
 };
 
