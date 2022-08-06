@@ -64,7 +64,7 @@ const findPersonById = (personId, done) => {
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
   Person.findByIdAndUpdate(personId,
-    {favoriteFoods: this.favoriteFoods.push(foodToAdd)},
+    {favoriteFoods: this.PersonModel.favoriteFoods.push(foodToAdd)},
     (err, data) => {
       if (err) return console.log(err);
 
