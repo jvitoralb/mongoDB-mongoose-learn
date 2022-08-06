@@ -21,39 +21,44 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ['Pizza', 'Sushi']
   });
 
-  personOne.save(function(err, data) {
-    if (err) {
-      return console.log(err)
-    };
+  personOne.save((err, data) => {
+    if (err) return console.log(err);
+
     done(null, data);
   });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function(err, data) {
-    if (err) {
-      return console.log(err);
-    }
+  Person.create(arrayOfPeople, (err, data) => {
+    if (err) return console.log(err);
+
     done(null, data);
   });
 };
 
 const findPeopleByName = (personName, done) => {
-  Person.find({name: personName}, function(err, data) {
-    if (err) {
-      console.log(err);
-    }
+  Person.find({name: personName}, (err, data) => {
+    if (err) return console.log(err);
+
     done(null, data);
   });
 };
 
 const findOneByFood = (food, done) => {
-  Person.findOne({favoriteFoods: food}, (err, data) => done(null, data));
+  Person.findOne({favoriteFoods: food}, (err, data) => {
+    if (err) return console.log(err);
+
+    done(null, data);
+  });
   
 };
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById(personId, (err, data) => {
+    if (err) return console.log(err);
+
+    done(null, data);
+  });
 };
 
 const findEditThenSave = (personId, done) => {
