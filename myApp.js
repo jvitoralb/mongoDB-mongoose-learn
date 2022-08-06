@@ -94,7 +94,7 @@ const removeManyPeople = (done) => {
 
   Person.remove({name: nameToRemove}, (err, response) => {
     if (err) return done(err);
-    done(err, response);
+    done(err, JSON.stringify(response));
   });
 };
 
